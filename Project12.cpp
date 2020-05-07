@@ -29,6 +29,51 @@ int main() {
 				i++;
 			}
 		}
+		if (command.compare("open") == 0) {
+			if (args[0].size()) {
+				main_filename = args[0];
+				bool is_open = fs.read(main_filename, buffer);
+				if (is_open) {
+					cout << "Successfuly opened file: " << main_filename << endl;
+				}
+				else {
+					cout << "Can't open file";
+					main_filename = "";
+					buffer = "";
+				}
+			}
+			else {
+				cout<<"Please use format: \"open file.txt\" ";
+			}
+		}
+
+		if (command.compare("close") == 0) {
+			main_filename = "";
+			buffer = "";
+		}
+
+		if (command.compare("save") == 0) {
+			if (main_filename.size()) {
+				fs.write(main_filename, buffer);
+				cout << "File saved!\n";
+			}
+			else {
+				cout << "Open file first!\n";
+			}
+		}
+
+		if (command.compare("saveas") == 0) {
+			if (main_filename.size()) {
+				fs.write(args[0], buffer);
+				cout << "File saved as " << args[0] << endl;
+				//todo: дали има аргумент
+			}
+			else {
+				cout << "Open file first!\n";
+			}
+		}
+
+		
 
 		if (command.compare("exit") == 0) {
 			break;
@@ -44,6 +89,7 @@ int main() {
 			cout << "help\t\t\tprints this information\n";
 			cout << "exit\t\t\texit program\n";
 		}
+		
 	}
 	
 	return 0;
