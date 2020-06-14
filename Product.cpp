@@ -18,35 +18,35 @@ Product::Product(std::string name, std::string expiring_date, std::string entry_
 }
 
 
-std::string Product::get_name() {
+std::string Product::get_name() const{
 	return this->name;
 }
 
-std::string Product::get_expiring_date() {
+std::string Product::get_expiring_date() const {
 	return this->expiring_date;
 }
 
-std::string Product::get_entry_date() {
+std::string Product::get_entry_date() const {
 	return this->entry_date;
 }
 
-std::string Product::get_producer() {
+std::string Product::get_producer() const {
 	return this->producer;
 }
 
-std::string Product::get_unit() {
+std::string Product::get_unit() const {
 	return this->unit;
 }
 
-std::string Product::get_quantity() {
+std::string Product::get_quantity() const { 
 	return this->quantity;
 }
 
-std::string Product::get_location() {
+std::string Product::get_location() const {
 	return this->location;
 }
 
-std::string Product::get_comment() {
+std::string Product::get_comment() const {
 	return this->comment;
 }
 
@@ -101,6 +101,7 @@ Product* Product::create_from_file(std::string buffer)
 	std::cout << buffer;
 	return nullptr;
 }
+
 std::string Product::toString(Product p)
 {
 	std::string line;

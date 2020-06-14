@@ -1,7 +1,6 @@
 #include <iostream>
 #include "FileSystem.h"
 #include "Product.h"
-#include <ctime>
 
 int main() {
 	
@@ -40,7 +39,7 @@ int main() {
 					products = new Product[number_of_product_in_buffer];
 					Product::load_products(buffer, products);
 
-					std::cout << "Successfuly opened file: " << main_filename << std::endl;
+					std::cout << "Successfully opened file: " << main_filename << std::endl;
 				}
 				else {
 					std::cout << "Can't open file";
@@ -56,7 +55,7 @@ int main() {
 		if (command.compare("close") == 0) {
 			main_filename = "";
 			buffer = "";
-			std::cout << "Successfuly closed file!" << std::endl;
+			std::cout << "Successfully closed file!" << std::endl;
 		}
 
 		if (command.compare("save") == 0) {
@@ -98,6 +97,11 @@ int main() {
 			std::cout << "saveas <file>\t\tsaves the currently open file in <file>\n";
 			std::cout << "help\t\t\tprints this information\n";
 			std::cout << "exit\t\t\texit program\n";
+			std::cout << "add\t\t\tadd new product\n";
+			std::cout << "print\t\t\tprint list of products\n";
+			std::cout << "remove\t\t\tremove product from file\n";
+			std::cout << "log <from> <To>\t\tdisplays all changes in availability between date <from> and date <to>\n";
+			std::cout << "clean\t\t\tclears the warehouse of all expired goods\n";
 		}
 		
 		if (command.compare("add") == 0) {
@@ -133,7 +137,7 @@ int main() {
 				Product p(name, expiring_date, entry_date, producer, unit, quantity, location, comment);
 				int number_of_product_in_buffer = std::count(buffer.begin(), buffer.end(), '\n');
 
-				for (int i = 0; i < number_of_product_in_buffer; i++) {   /////////////////////////////////////////////skalda!!
+				for (int i = 0; i < number_of_product_in_buffer; i++) { 
 					if ((products[i].get_name() == name) && (products[i].get_expiring_date() == expiring_date)) {
 							location = products[i].get_location();
 					
@@ -146,8 +150,8 @@ int main() {
 
 				products = new Product[number_of_product_in_buffer + 1];
 				Product::load_products(buffer, products);
-				std::cout << number_of_product_in_buffer << std::endl;
-				std::cout << "Successfuly added!" << std::endl;
+				//std::cout << number_of_product_in_buffer << std::endl;
+				std::cout << "Successfully added!" << std::endl;
 			}
 			else {
 				std::cout << "Open file first!" << std::endl;
@@ -177,7 +181,7 @@ int main() {
 				if (args[0].size()) {
 					Product::remove(buffer, args[0]);
 					Product::load_products(buffer, products);
-					std::cout << "Successfuly remove!\n";
+					std::cout << "successfully remove!\n";
 				}
 				else {
 					std::cout << "Please use format \"remove product_name\"" << std::endl;
@@ -188,8 +192,19 @@ int main() {
 			}
 		}
 
-		if (command.compare("log <from> <to>") == 0) { /////////////////////////////////////////////////
-
+		if (command.compare("log") == 0) { 
+			if (main_filename.size()) {
+				if (args[0].size() && args[1].size()) {
+				
+				
+				}
+				else {
+					std::cout << "Please use format \"log <from> <to>\"" << std::endl;
+				}
+			}
+			else {
+				std::cout << "Open file first!" << std::endl;
+			}
 		}
 		
 		if (command.compare("clean") == 0) {
@@ -207,7 +222,7 @@ int main() {
 					}
 				}
 				Product::load_products(buffer, products);
-				std::cout << "Successfuly remove!\n";
+				std::cout << "successfully remove!\n";
 			}
 			else {
 				std::cout << "Open file first!" << std::endl;

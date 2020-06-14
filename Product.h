@@ -25,14 +25,14 @@ public:
 		std::string comment
 	);
 
-	std::string get_name();
-	std::string get_expiring_date();
-	std::string get_entry_date();
-	std::string get_producer();
-	std::string get_unit();
-	std::string get_quantity();
-	std::string get_location();
-	std::string get_comment();
+	std::string get_name() const;
+	std::string get_expiring_date() const;
+	std::string get_entry_date() const;
+	std::string get_producer() const;
+	std::string get_unit() const;
+	std::string get_quantity() const;
+	std::string get_location() const;
+	std::string get_comment() const;
 
 	void set_name(std::string);
 	void set_expiring_date(std::string);
